@@ -7,8 +7,8 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/ava-labs/avalanchego/utils/formatting"
-	"github.com/ava-labs/coreth/core"
+	"github.com/dim4egster/avalanchego/utils/formatting"
+	"github.com/dim4egster/coreth/core"
 )
 
 // StaticService defines the static API services exposed by the evm

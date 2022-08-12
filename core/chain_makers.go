@@ -30,14 +30,14 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ava-labs/coreth/consensus"
-	"github.com/ava-labs/coreth/consensus/dummy"
-	"github.com/ava-labs/coreth/consensus/misc"
-	"github.com/ava-labs/coreth/core/state"
-	"github.com/ava-labs/coreth/core/types"
-	"github.com/ava-labs/coreth/core/vm"
-	"github.com/ava-labs/coreth/ethdb"
-	"github.com/ava-labs/coreth/params"
+	"github.com/dim4egster/coreth/consensus"
+	"github.com/dim4egster/coreth/consensus/dummy"
+	"github.com/dim4egster/coreth/consensus/misc"
+	"github.com/dim4egster/coreth/core/state"
+	"github.com/dim4egster/coreth/core/types"
+	"github.com/dim4egster/coreth/core/vm"
+	"github.com/dim4egster/coreth/ethdb"
+	"github.com/dim4egster/coreth/params"
 	"github.com/ethereum/go-ethereum/common"
 )
 

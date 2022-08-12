@@ -32,7 +32,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ava-labs/coreth/ethdb/memorydb"
+	"github.com/dim4egster/coreth/ethdb/memorydb"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 )

@@ -27,7 +27,7 @@
 package node
 
 import (
-	"github.com/ava-labs/coreth/rpc"
+	"github.com/dim4egster/coreth/rpc"
 )
 
 const (

@@ -37,12 +37,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ava-labs/coreth/accounts/abi"
-	"github.com/ava-labs/coreth/accounts/abi/bind"
-	"github.com/ava-labs/coreth/core"
-	"github.com/ava-labs/coreth/core/types"
-	"github.com/ava-labs/coreth/interfaces"
-	"github.com/ava-labs/coreth/params"
+	"github.com/dim4egster/coreth/accounts/abi"
+	"github.com/dim4egster/coreth/accounts/abi/bind"
+	"github.com/dim4egster/coreth/core"
+	"github.com/dim4egster/coreth/core/types"
+	"github.com/dim4egster/coreth/interfaces"
+	"github.com/dim4egster/coreth/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 )

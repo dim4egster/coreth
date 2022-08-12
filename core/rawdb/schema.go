@@ -31,7 +31,7 @@ import (
 	"bytes"
 	"encoding/binary"
 
-	"github.com/ava-labs/coreth/metrics"
+	"github.com/dim4egster/coreth/metrics"
 	"github.com/ethereum/go-ethereum/common"
 )
 

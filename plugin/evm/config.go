@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ava-labs/coreth/eth"
+	"github.com/dim4egster/coreth/eth"
 	"github.com/spf13/cast"
 )
 

@@ -27,8 +27,8 @@
 package state
 
 import (
-	"github.com/ava-labs/coreth/core/rawdb"
-	"github.com/ava-labs/coreth/ethdb"
+	"github.com/dim4egster/coreth/core/rawdb"
+	"github.com/dim4egster/coreth/ethdb"
 	"github.com/ethereum/go-ethereum/common"
 )
 

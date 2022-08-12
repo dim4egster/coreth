@@ -30,11 +30,11 @@ import (
 	"math/big"
 	"sync/atomic"
 
-	"github.com/ava-labs/coreth/consensus"
-	"github.com/ava-labs/coreth/core/state"
-	"github.com/ava-labs/coreth/core/types"
-	"github.com/ava-labs/coreth/core/vm"
-	"github.com/ava-labs/coreth/params"
+	"github.com/dim4egster/coreth/consensus"
+	"github.com/dim4egster/coreth/core/state"
+	"github.com/dim4egster/coreth/core/types"
+	"github.com/dim4egster/coreth/core/vm"
+	"github.com/dim4egster/coreth/params"
 )
 
 // statePrefetcher is a basic Prefetcher, which blindly executes a block on top

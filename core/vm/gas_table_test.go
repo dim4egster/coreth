@@ -31,10 +31,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ava-labs/coreth/core/rawdb"
-	"github.com/ava-labs/coreth/core/state"
-	"github.com/ava-labs/coreth/params"
-	"github.com/ava-labs/coreth/vmerrs"
+	"github.com/dim4egster/coreth/core/rawdb"
+	"github.com/dim4egster/coreth/core/state"
+	"github.com/dim4egster/coreth/params"
+	"github.com/dim4egster/coreth/vmerrs"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )

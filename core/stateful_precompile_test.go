@@ -6,8 +6,8 @@ package core
 import (
 	"math/big"
 
-	"github.com/ava-labs/coreth/core/state"
-	"github.com/ava-labs/coreth/precompile"
+	"github.com/dim4egster/coreth/core/state"
+	"github.com/dim4egster/coreth/precompile"
 	"github.com/ethereum/go-ethereum/common"
 )
 

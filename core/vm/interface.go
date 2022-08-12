@@ -29,7 +29,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/ava-labs/coreth/core/types"
+	"github.com/dim4egster/coreth/core/types"
 	"github.com/ethereum/go-ethereum/common"
 )
 

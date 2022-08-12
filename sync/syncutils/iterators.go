@@ -4,8 +4,8 @@
 package syncutils
 
 import (
-	"github.com/ava-labs/coreth/core/state/snapshot"
-	"github.com/ava-labs/coreth/ethdb"
+	"github.com/dim4egster/coreth/core/state/snapshot"
+	"github.com/dim4egster/coreth/ethdb"
 )
 
 var (

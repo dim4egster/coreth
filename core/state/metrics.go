@@ -26,7 +26,7 @@
 
 package state
 
-import "github.com/ava-labs/coreth/metrics"
+import "github.com/dim4egster/coreth/metrics"
 
 var (
 	accountUpdatedMeter   = metrics.NewRegisteredMeter("state/update/account", nil)

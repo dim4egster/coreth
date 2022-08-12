@@ -6,13 +6,13 @@ package handlers
 import (
 	"context"
 
-	"github.com/ava-labs/avalanchego/codec"
-	"github.com/ava-labs/avalanchego/ids"
-	"github.com/ava-labs/coreth/core/state/snapshot"
-	"github.com/ava-labs/coreth/core/types"
-	"github.com/ava-labs/coreth/plugin/evm/message"
-	"github.com/ava-labs/coreth/sync/handlers/stats"
-	"github.com/ava-labs/coreth/trie"
+	"github.com/dim4egster/avalanchego/codec"
+	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/coreth/core/state/snapshot"
+	"github.com/dim4egster/coreth/core/types"
+	"github.com/dim4egster/coreth/plugin/evm/message"
+	"github.com/dim4egster/coreth/sync/handlers/stats"
+	"github.com/dim4egster/coreth/trie"
 	"github.com/ethereum/go-ethereum/common"
 )
 

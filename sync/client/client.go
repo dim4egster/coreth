@@ -11,24 +11,24 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ava-labs/avalanchego/ids"
+	"github.com/dim4egster/avalanchego/ids"
 
-	"github.com/ava-labs/coreth/ethdb/memorydb"
-	"github.com/ava-labs/coreth/params"
-	"github.com/ava-labs/coreth/sync/client/stats"
+	"github.com/dim4egster/coreth/ethdb/memorydb"
+	"github.com/dim4egster/coreth/params"
+	"github.com/dim4egster/coreth/sync/client/stats"
 
-	"github.com/ava-labs/avalanchego/codec"
-	"github.com/ava-labs/avalanchego/version"
+	"github.com/dim4egster/avalanchego/codec"
+	"github.com/dim4egster/avalanchego/version"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/ava-labs/coreth/core/types"
-	"github.com/ava-labs/coreth/ethdb"
-	"github.com/ava-labs/coreth/peer"
-	"github.com/ava-labs/coreth/plugin/evm/message"
-	"github.com/ava-labs/coreth/trie"
+	"github.com/dim4egster/coreth/core/types"
+	"github.com/dim4egster/coreth/ethdb"
+	"github.com/dim4egster/coreth/peer"
+	"github.com/dim4egster/coreth/plugin/evm/message"
+	"github.com/dim4egster/coreth/trie"
 )
 
 const (

@@ -6,7 +6,7 @@ package stats
 import (
 	"time"
 
-	"github.com/ava-labs/coreth/metrics"
+	"github.com/dim4egster/coreth/metrics"
 )
 
 // RequestHandlerStats provides the interface for metrics on request handling.
