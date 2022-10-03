@@ -7,9 +7,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/dim4egster/avalanchego/database/encdb"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/utils/crypto"
+	"github.com/dim4egster/qmallgo/database/encdb"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils/crypto"
 	"github.com/ethereum/go-ethereum/common"
 )
 

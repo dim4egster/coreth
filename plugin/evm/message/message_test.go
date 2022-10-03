@@ -7,8 +7,8 @@ import (
 	"encoding/base64"
 	"testing"
 
-	"github.com/dim4egster/avalanchego/utils"
-	"github.com/dim4egster/avalanchego/utils/units"
+	"github.com/dim4egster/qmallgo/utils"
+	"github.com/dim4egster/qmallgo/utils/units"
 
 	"github.com/stretchr/testify/assert"
 )

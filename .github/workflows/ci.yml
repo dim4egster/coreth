@@ -7,11 +7,11 @@ on:
   workflow_dispatch:
     inputs:
       avalanchegoRepo:
-        description: 'avalanchego github repository'
+        description: 'qmallgo github repository'
         required: true
-        default: 'dim4egster/avalanchego'
+        default: 'dim4egster/qmallgo'
       avalanchegoBranch:
-        description: 'avalanchego branch'
+        description: 'qmallgo branch'
         required: true
         default: 'master'
 
@@ -27,15 +27,15 @@ jobs:
         with:
           repository: ${{ github.event.inputs.avalanchegoRepo }}
           ref: ${{ github.event.inputs.avalanchegoBranch }}
-          path: avalanchego
+          path: qmallgo
           token: ${{ secrets.AVALANCHE_PAT }}
       - uses: actions/setup-go@v1
         with:
           go-version: 1.18
-      - name: change avalanchego dep
+      - name: change qmallgo dep
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
-          go mod edit -replace github.com/dim4egster/avalanchego=./avalanchego
+          go mod edit -replace github.com/dim4egster/qmallgo=./qmallgo
           go mod tidy
           go clean -modcache # avoid conflicts with the golangci-lint-action cache
       - run: ./scripts/lint_allowed_geth_imports.sh
@@ -61,15 +61,15 @@ jobs:
       with:
         repository: ${{ github.event.inputs.avalanchegoRepo }}
         ref: ${{ github.event.inputs.avalanchegoBranch }}
-        path: avalanchego
+        path: qmallgo
         token: ${{ secrets.AVALANCHE_PAT }}
     - uses: actions/setup-go@v1
       with:
         go-version: ${{ matrix.go }}
-    - name: change avalanchego dep
+    - name: change qmallgo dep
       if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
-        go mod edit -replace github.com/dim4egster/avalanchego=./avalanchego
+        go mod edit -replace github.com/dim4egster/qmallgo=./qmallgo
         go mod tidy
     - run: go mod download
       shell: bash
@@ -94,15 +94,15 @@ jobs:
       with:
         repository: ${{ github.event.inputs.avalanchegoRepo }}
         ref: ${{ github.event.inputs.avalanchegoBranch }}
-        path: avalanchego
+        path: qmallgo
         token: ${{ secrets.AVALANCHE_PAT }}
     - uses: actions/setup-go@v1
       with:
         go-version: ${{ matrix.go }}
-    - name: change avalanchego dep
+    - name: change qmallgo dep
       if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
-        go mod edit -replace github.com/dim4egster/avalanchego=./avalanchego
+        go mod edit -replace github.com/dim4egster/qmallgo=./qmallgo
         go mod tidy
     - run: go mod download
       shell: bash
@@ -125,21 +125,21 @@ jobs:
       with:
         repository: ${{ github.event.inputs.avalanchegoRepo }}
         ref: ${{ github.event.inputs.avalanchegoBranch }}
-        path: avalanchego
+        path: qmallgo
         token: ${{ secrets.AVALANCHE_PAT }}
     - uses: actions/setup-go@v1
       with:
         go-version: ${{ matrix.go }}
-    - name: change avalanchego dep
+    - name: change qmallgo dep
       if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
-        go mod edit -replace github.com/dim4egster/avalanchego=./avalanchego
+        go mod edit -replace github.com/dim4egster/qmallgo=./qmallgo
         go mod tidy
-    - name: prepare avalanchego directory for docker copy
+    - name: prepare qmallgo directory for docker copy
       if: ${{ github.event_name == 'workflow_dispatch' }}
-      # mv avalanchego/ to nested dir avalanchego/avalanchego/
+      # mv qmallgo/ to nested dir qmallgo/qmallgo/
       # required because docker instruction "COPY dir ." copies dir/* to .
-      run: mkdir avalanchego_tmp && mv avalanchego avalanchego_tmp && mv avalanchego_tmp avalanchego
+      run: mkdir avalanchego_tmp && mv qmallgo avalanchego_tmp && mv avalanchego_tmp qmallgo
     - run: .github/workflows/run_e2e_tests.sh --parallelism 1 --client-id $KURTOSIS_CLIENT_ID --client-secret $KURTOSIS_CLIENT_SECRET
       shell: bash
       env:

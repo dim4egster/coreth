@@ -34,7 +34,7 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/accounts"
 	"github.com/dim4egster/coreth/accounts/abi"
 	"github.com/dim4egster/coreth/accounts/keystore"
@@ -132,7 +132,7 @@ func (s *EthereumAPI) FeeHistory(ctx context.Context, blockCount rpc.DecimalOrHe
 // Syncing allows the caller to determine whether the chain is syncing or not.
 // In geth, the response is either a map representing an ethereum.SyncProgress
 // struct or "false" (indicating the chain is not syncing).
-// In coreth, avalanchego prevents API calls unless bootstrapping is complete,
+// In coreth, qmallgo prevents API calls unless bootstrapping is complete,
 // so we always return false here for API compatibility.
 func (s *EthereumAPI) Syncing() (interface{}, error) {
 	return false, nil

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/dim4egster/avalanchego/api"
-	"github.com/dim4egster/avalanchego/utils/profiler"
+	"github.com/dim4egster/qmallgo/api"
+	"github.com/dim4egster/qmallgo/utils/profiler"
 	"github.com/ethereum/go-ethereum/log"
 )
 

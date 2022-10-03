@@ -14,14 +14,14 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/dim4egster/avalanchego/chains/atomic"
-	"github.com/dim4egster/avalanchego/database/manager"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/snow"
-	"github.com/dim4egster/avalanchego/snow/choices"
-	commonEng "github.com/dim4egster/avalanchego/snow/engine/common"
-	"github.com/dim4egster/avalanchego/utils/crypto"
-	"github.com/dim4egster/avalanchego/utils/units"
+	"github.com/dim4egster/qmallgo/chains/atomic"
+	"github.com/dim4egster/qmallgo/database/manager"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/snow"
+	"github.com/dim4egster/qmallgo/snow/choices"
+	commonEng "github.com/dim4egster/qmallgo/snow/engine/common"
+	"github.com/dim4egster/qmallgo/utils/crypto"
+	"github.com/dim4egster/qmallgo/utils/units"
 
 	"github.com/dim4egster/coreth/accounts/keystore"
 	"github.com/dim4egster/coreth/consensus/dummy"

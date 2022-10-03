@@ -6,11 +6,11 @@ package evm
 import (
 	"testing"
 
-	"github.com/dim4egster/avalanchego/chains/atomic"
-	"github.com/dim4egster/avalanchego/database/memdb"
-	"github.com/dim4egster/avalanchego/database/versiondb"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/utils"
+	"github.com/dim4egster/qmallgo/chains/atomic"
+	"github.com/dim4egster/qmallgo/database/memdb"
+	"github.com/dim4egster/qmallgo/database/versiondb"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

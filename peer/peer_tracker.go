@@ -8,9 +8,9 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/dim4egster/avalanchego/ids"
-	utils_math "github.com/dim4egster/avalanchego/utils/math"
-	"github.com/dim4egster/avalanchego/version"
+	"github.com/dim4egster/qmallgo/ids"
+	utils_math "github.com/dim4egster/qmallgo/utils/math"
+	"github.com/dim4egster/qmallgo/version"
 
 	"github.com/ethereum/go-ethereum/log"
 

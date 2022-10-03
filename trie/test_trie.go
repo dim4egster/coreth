@@ -10,7 +10,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/dim4egster/avalanchego/utils/wrappers"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 	"github.com/dim4egster/coreth/accounts/keystore"
 	"github.com/dim4egster/coreth/core/types"
 

@@ -11,14 +11,14 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/dim4egster/avalanchego/chains/atomic"
-	"github.com/dim4egster/avalanchego/database"
-	"github.com/dim4egster/avalanchego/database/leveldb"
-	"github.com/dim4egster/avalanchego/database/memdb"
-	"github.com/dim4egster/avalanchego/database/versiondb"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/utils/logging"
-	"github.com/dim4egster/avalanchego/utils/wrappers"
+	"github.com/dim4egster/qmallgo/chains/atomic"
+	"github.com/dim4egster/qmallgo/database"
+	"github.com/dim4egster/qmallgo/database/leveldb"
+	"github.com/dim4egster/qmallgo/database/memdb"
+	"github.com/dim4egster/qmallgo/database/versiondb"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils/logging"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 
 	"github.com/ethereum/go-ethereum/common"
 )

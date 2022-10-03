@@ -11,7 +11,7 @@ import (
 
 	"github.com/dim4egster/coreth/params"
 
-	"github.com/dim4egster/avalanchego/snow"
+	"github.com/dim4egster/qmallgo/snow"
 )
 
 func TestBlockBuilderShutsDown(t *testing.T) {

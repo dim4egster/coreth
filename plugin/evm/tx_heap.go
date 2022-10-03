@@ -6,7 +6,7 @@ package evm
 import (
 	"container/heap"
 
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 )
 
 // txEntry is used to track the [gasPrice] transactions pay to be included in

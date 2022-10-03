@@ -32,7 +32,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/dim4egster/avalanchego/utils/timer/mockable"
+	"github.com/dim4egster/qmallgo/utils/timer/mockable"
 	"github.com/dim4egster/coreth/consensus/dummy"
 	"github.com/dim4egster/coreth/core"
 	"github.com/dim4egster/coreth/core/types"

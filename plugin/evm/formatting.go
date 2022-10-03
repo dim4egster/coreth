@@ -6,10 +6,10 @@ package evm
 import (
 	"fmt"
 
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/utils/constants"
-	"github.com/dim4egster/avalanchego/utils/crypto"
-	"github.com/dim4egster/avalanchego/utils/formatting/address"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils/constants"
+	"github.com/dim4egster/qmallgo/utils/crypto"
+	"github.com/dim4egster/qmallgo/utils/formatting/address"
 	"github.com/ethereum/go-ethereum/common"
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 )

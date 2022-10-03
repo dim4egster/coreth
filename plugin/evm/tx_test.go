@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dim4egster/avalanchego/chains/atomic"
-	"github.com/dim4egster/avalanchego/snow"
+	"github.com/dim4egster/qmallgo/chains/atomic"
+	"github.com/dim4egster/qmallgo/snow"
 	"github.com/dim4egster/coreth/params"
 	"github.com/stretchr/testify/require"
 )

@@ -6,11 +6,11 @@ package message
 import (
 	"fmt"
 
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	"github.com/dim4egster/avalanchego/snow/engine/snowman/block"
+	"github.com/dim4egster/qmallgo/snow/engine/snowman/block"
 )
 
 var _ block.StateSummary = &SyncSummary{}

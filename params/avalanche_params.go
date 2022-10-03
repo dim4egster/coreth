@@ -6,7 +6,7 @@ package params
 import (
 	"math/big"
 
-	"github.com/dim4egster/avalanchego/utils/units"
+	"github.com/dim4egster/qmallgo/utils/units"
 )
 
 // Minimum Gas Price

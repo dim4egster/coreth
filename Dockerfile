@@ -8,13 +8,13 @@ ARG AVALANCHE_VERSION
 RUN mkdir -p $GOPATH/src/github.com/dim4egster
 WORKDIR $GOPATH/src/github.com/dim4egster
 
-RUN git clone -b $AVALANCHE_VERSION --single-branch https://github.com/dim4egster/avalanchego.git
+RUN git clone -b $AVALANCHE_VERSION --single-branch https://github.com/dim4egster/qmallgo.git
 
 # Copy coreth repo into desired location
 COPY . coreth
 
 # Set the workdir to AvalancheGo and update coreth dependency to local version
-WORKDIR $GOPATH/src/github.com/dim4egster/avalanchego
+WORKDIR $GOPATH/src/github.com/dim4egster/qmallgo
 # Run go mod download here to improve caching of AvalancheGo specific depednencies
 RUN go mod download
 # Replace the coreth dependency
@@ -31,10 +31,10 @@ RUN mkdir build/plugins
 FROM debian:11-slim AS execution
 
 # Maintain compatibility with previous images
-RUN mkdir -p /avalanchego/build
-WORKDIR /avalanchego/build
+RUN mkdir -p /qmallgo/build
+WORKDIR /qmallgo/build
 
 # Copy the executables into the container
-COPY --from=builder /go/src/github.com/dim4egster/avalanchego/build .
+COPY --from=builder /go/src/github.com/dim4egster/qmallgo/build .
 
-CMD [ "./avalanchego" ]
+CMD [ "./qmallgo" ]

@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/dim4egster/avalanchego/chains/atomic"
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/database"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/utils/units"
-	"github.com/dim4egster/avalanchego/utils/wrappers"
+	"github.com/dim4egster/qmallgo/chains/atomic"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/database"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils/units"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 
 	"github.com/dim4egster/coreth/core"
 	"github.com/dim4egster/coreth/core/types"

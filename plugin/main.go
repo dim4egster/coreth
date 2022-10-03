@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dim4egster/avalanchego/utils/logging"
-	"github.com/dim4egster/avalanchego/utils/ulimit"
-	"github.com/dim4egster/avalanchego/vms/rpcchainvm"
+	"github.com/dim4egster/qmallgo/utils/logging"
+	"github.com/dim4egster/qmallgo/utils/ulimit"
+	"github.com/dim4egster/qmallgo/vms/rpcchainvm"
 
 	"github.com/dim4egster/coreth/plugin/evm"
 )

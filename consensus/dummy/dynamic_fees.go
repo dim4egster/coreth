@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/dim4egster/avalanchego/utils/wrappers"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 	"github.com/dim4egster/coreth/core/types"
 	"github.com/dim4egster/coreth/params"
 	"github.com/ethereum/go-ethereum/common"

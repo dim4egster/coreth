@@ -4,10 +4,10 @@
 GOPATH="$(go env GOPATH)"
 
 # Set binary location
-binary_path=${CORETH_BINARY_PATH:-"$GOPATH/src/github.com/dim4egster/avalanchego/build/plugins/evm"}
+binary_path=${CORETH_BINARY_PATH:-"$GOPATH/src/github.com/dim4egster/qmallgo/build/plugins/evm"}
 
 # Avalabs docker hub
-dockerhub_repo="avaplatform/avalanchego"
+dockerhub_repo="avaplatform/qmallgo"
 
 # Current branch
 current_branch=${CURRENT_BRANCH:-$(git describe --tags --exact-match 2> /dev/null || git symbolic-ref -q --short HEAD || git rev-parse --short HEAD)}

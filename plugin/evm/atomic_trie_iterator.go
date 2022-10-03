@@ -7,10 +7,10 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/dim4egster/avalanchego/chains/atomic"
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/utils/wrappers"
+	"github.com/dim4egster/qmallgo/chains/atomic"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 
 	"github.com/dim4egster/coreth/trie"
 	"github.com/ethereum/go-ethereum/common"

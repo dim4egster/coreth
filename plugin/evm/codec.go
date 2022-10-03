@@ -6,10 +6,10 @@ package evm
 import (
 	"fmt"
 
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/codec/linearcodec"
-	"github.com/dim4egster/avalanchego/utils/wrappers"
-	"github.com/dim4egster/avalanchego/vms/secp256k1fx"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/codec/linearcodec"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
+	"github.com/dim4egster/qmallgo/vms/secp256k1fx"
 )
 
 // Codec does serialization and deserialization

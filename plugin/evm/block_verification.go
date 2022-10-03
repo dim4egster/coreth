@@ -9,7 +9,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	safemath "github.com/dim4egster/avalanchego/utils/math"
+	safemath "github.com/dim4egster/qmallgo/utils/math"
 
 	"github.com/dim4egster/coreth/constants"
 	"github.com/dim4egster/coreth/core/types"

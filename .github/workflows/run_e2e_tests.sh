@@ -10,7 +10,7 @@ fi
 
 # Testing specific variables
 avalanche_testing_repo="avaplatform/avalanche-testing"
-avalanchego_repo="avaplatform/avalanchego"
+avalanchego_repo="avaplatform/qmallgo"
 # Define default avalanche testing version to use
 avalanche_testing_image="${avalanche_testing_repo}:master"
 
@@ -43,12 +43,12 @@ fi
 
 echo "Using $avalanche_testing_image for e2e tests"
 
-# Defines the avalanchego tag to use
+# Defines the qmallgo tag to use
 # Either uses the same tag as the current branch or uses the default
 # Disable matchup in favor of explicit tag
 # TODO re-enable matchup when our workflow better supports it.
 # if docker_tag_exists $avalanchego_repo $current_branch; then
-#     echo "$avalanchego_repo:$current_branch exists; using this avalanchego image to run e2e tests"
+#     echo "$avalanchego_repo:$current_branch exists; using this qmallgo image to run e2e tests"
 #     AVALANCHE_VERSION=$current_branch
 # else
 #     echo "$avalanchego_repo $current_branch does NOT exist; using the default image to run e2e tests"
@@ -60,11 +60,11 @@ docker pull $avalanche_testing_image
 # Setting the build ID
 git_commit_id=$( git rev-list -1 HEAD )
 
-# Build current avalanchego
+# Build current qmallgo
 source "$CORETH_PATH"/scripts/build_image.sh
 
 # Target built version to use in avalanche-testing
-avalanche_image="avaplatform/avalanchego:$build_image_id"
+avalanche_image="avaplatform/qmallgo:$build_image_id"
 
 echo "Running Avalanche Image: ${avalanche_image}"
 echo "Running Avalanche Testing Image: ${avalanche_testing_image}"
@@ -75,7 +75,7 @@ echo "Git Commit ID : ${git_commit_id}"
 custom_params_json="{
     \"isKurtosisCoreDevMode\": false,
     \"avalanchegoImage\":\"${avalanche_image}\",
-    \"testBatch\":\"avalanchego\"
+    \"testBatch\":\"qmallgo\"
 }"
 # >>>>>>>> avalanche-testing custom parameters <<<<<<<<<<<<<
 

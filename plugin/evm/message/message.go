@@ -7,12 +7,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/dim4egster/avalanchego/codec"
+	"github.com/dim4egster/qmallgo/codec"
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/utils/units"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils/units"
 )
 
 const (

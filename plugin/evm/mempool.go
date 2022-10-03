@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/dim4egster/avalanchego/cache"
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/cache"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/metrics"
 	"github.com/ethereum/go-ethereum/log"
 )

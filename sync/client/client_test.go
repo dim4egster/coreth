@@ -13,7 +13,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 
 	"github.com/dim4egster/coreth/consensus/dummy"
 	"github.com/dim4egster/coreth/core"

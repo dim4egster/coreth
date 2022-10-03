@@ -8,8 +8,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/ids"
 
 	"github.com/dim4egster/coreth/peer"
 	"github.com/dim4egster/coreth/plugin/evm/message"

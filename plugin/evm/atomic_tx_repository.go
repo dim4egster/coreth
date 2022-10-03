@@ -13,13 +13,13 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/database"
-	"github.com/dim4egster/avalanchego/database/prefixdb"
-	"github.com/dim4egster/avalanchego/database/versiondb"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/utils/units"
-	"github.com/dim4egster/avalanchego/utils/wrappers"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/database"
+	"github.com/dim4egster/qmallgo/database/prefixdb"
+	"github.com/dim4egster/qmallgo/database/versiondb"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils/units"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 )
 
 const (

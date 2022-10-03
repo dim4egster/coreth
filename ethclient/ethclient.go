@@ -34,7 +34,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/accounts/abi/bind"
 	"github.com/dim4egster/coreth/core/types"
 	"github.com/dim4egster/coreth/interfaces"

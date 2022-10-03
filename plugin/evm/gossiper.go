@@ -9,14 +9,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dim4egster/avalanchego/codec"
+	"github.com/dim4egster/qmallgo/codec"
 
 	"github.com/dim4egster/coreth/peer"
 
-	"github.com/dim4egster/avalanchego/cache"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/snow"
-	"github.com/dim4egster/avalanchego/utils/wrappers"
+	"github.com/dim4egster/qmallgo/cache"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/snow"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"

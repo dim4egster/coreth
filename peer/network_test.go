@@ -12,14 +12,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dim4egster/avalanchego/snow/engine/common"
+	"github.com/dim4egster/qmallgo/snow/engine/common"
 
 	"github.com/dim4egster/coreth/plugin/evm/message"
 
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/codec/linearcodec"
-	"github.com/dim4egster/avalanchego/ids"
-	"github.com/dim4egster/avalanchego/version"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/codec/linearcodec"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/version"
 	"github.com/stretchr/testify/assert"
 )
 

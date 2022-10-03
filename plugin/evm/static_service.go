@@ -7,7 +7,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/dim4egster/avalanchego/utils/formatting"
+	"github.com/dim4egster/qmallgo/utils/formatting"
 	"github.com/dim4egster/coreth/core"
 )
 

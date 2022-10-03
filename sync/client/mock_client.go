@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/core/types"
 	"github.com/dim4egster/coreth/plugin/evm/message"
 	"github.com/dim4egster/coreth/sync/handlers"

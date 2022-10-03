@@ -8,7 +8,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/dim4egster/avalanchego/utils"
+	"github.com/dim4egster/qmallgo/utils"
 	"github.com/dim4egster/coreth/core/rawdb"
 	"github.com/dim4egster/coreth/ethdb/memorydb"
 	"github.com/dim4egster/coreth/plugin/evm/message"

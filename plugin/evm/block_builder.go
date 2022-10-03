@@ -9,9 +9,9 @@ import (
 
 	"github.com/dim4egster/coreth/params"
 
-	"github.com/dim4egster/avalanchego/snow"
-	commonEng "github.com/dim4egster/avalanchego/snow/engine/common"
-	"github.com/dim4egster/avalanchego/utils/timer"
+	"github.com/dim4egster/qmallgo/snow"
+	commonEng "github.com/dim4egster/qmallgo/snow/engine/common"
+	"github.com/dim4egster/qmallgo/utils/timer"
 	"github.com/dim4egster/coreth/core"
 	"github.com/ethereum/go-ethereum/log"
 )

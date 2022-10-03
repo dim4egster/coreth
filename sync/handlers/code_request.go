@@ -7,8 +7,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/ids"
 
 	"github.com/dim4egster/coreth/core/rawdb"
 	"github.com/dim4egster/coreth/ethdb"

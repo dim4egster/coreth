@@ -11,14 +11,14 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 
 	"github.com/dim4egster/coreth/ethdb/memorydb"
 	"github.com/dim4egster/coreth/params"
 	"github.com/dim4egster/coreth/sync/client/stats"
 
-	"github.com/dim4egster/avalanchego/codec"
-	"github.com/dim4egster/avalanchego/version"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/version"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"

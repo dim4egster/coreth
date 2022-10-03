@@ -9,8 +9,8 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/dim4egster/avalanchego/database/versiondb"
-	"github.com/dim4egster/avalanchego/utils/wrappers"
+	"github.com/dim4egster/qmallgo/database/versiondb"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 
 	"github.com/dim4egster/coreth/plugin/evm/message"
 	syncclient "github.com/dim4egster/coreth/sync/client"

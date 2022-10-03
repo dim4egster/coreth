@@ -7,7 +7,7 @@ require (
 	github.com/cespare/cp v1.1.1
 	github.com/davecgh/go-spew v1.1.1
 	github.com/deckarep/golang-set v1.8.0
-	github.com/dim4egster/avalanchego v1.9.0
+	github.com/dim4egster/qmallgo v1.9.0
 	github.com/ethereum/go-ethereum v1.10.25
 	github.com/fjl/memsize v0.0.1
 	github.com/gballet/go-libpcsclite v0.0.0-20191108122812-4678299bea08

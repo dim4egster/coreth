@@ -7,7 +7,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/consensus/dummy"
 	"github.com/dim4egster/coreth/core"
 	"github.com/dim4egster/coreth/core/types"

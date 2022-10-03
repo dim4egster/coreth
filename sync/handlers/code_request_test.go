@@ -10,7 +10,7 @@ import (
 
 	"github.com/dim4egster/coreth/params"
 
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/core/rawdb"
 	"github.com/dim4egster/coreth/ethdb/memorydb"
 	"github.com/dim4egster/coreth/plugin/evm/message"

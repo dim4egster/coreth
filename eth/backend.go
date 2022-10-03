@@ -34,7 +34,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dim4egster/avalanchego/utils/timer/mockable"
+	"github.com/dim4egster/qmallgo/utils/timer/mockable"
 	"github.com/dim4egster/coreth/accounts"
 	"github.com/dim4egster/coreth/consensus"
 	"github.com/dim4egster/coreth/consensus/dummy"

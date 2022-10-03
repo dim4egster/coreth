@@ -9,7 +9,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/dim4egster/avalanchego/ids"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/core/rawdb"
 	"github.com/dim4egster/coreth/core/state/snapshot"
 	"github.com/dim4egster/coreth/core/types"

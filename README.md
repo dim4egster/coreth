@@ -11,11 +11,11 @@ This chain implements the Ethereum Virtual Machine and supports Solidity smart c
 Coreth is a dependency of AvalancheGo which is used to implement the EVM based Virtual Machine for the Avalanche C-Chain. In order to run with a local version of Coreth, users must update their Coreth dependency within AvalancheGo to point to their local Coreth directory. If Coreth and AvalancheGo are at the standard location within your GOPATH, this will look like the following:
 
 ```bash
-cd $GOPATH/src/github.com/dim4egster/avalanchego
+cd $GOPATH/src/github.com/dim4egster/qmallgo
 go mod edit -replace github.com/dim4egster/coreth=../coreth
 ```
 
-Note: the C-Chain originally ran in a separate process from the main AvalancheGo process and communicated with it over a local gRPC connection. When this was the case, AvalancheGo's build script would download Coreth, compile it, and place the binary into the `avalanchego/build/plugins` directory.
+Note: the C-Chain originally ran in a separate process from the main AvalancheGo process and communicated with it over a local gRPC connection. When this was the case, AvalancheGo's build script would download Coreth, compile it, and place the binary into the `qmallgo/build/plugins` directory.
 
 ## API
 
@@ -28,7 +28,7 @@ The C-Chain supports the following API namespaces:
 
 Only the `eth` namespace is enabled by default. 
 To enable the other namespaces see the instructions for passing the C-Chain config to AvalancheGo [here.](https://docs.avax.network/nodes/maintain/chain-config-flags/#c-chain-configs)
-Full documentation for the C-Chain's API can be found [here.](https://docs.avax.network/apis/avalanchego/apis/c-chain/)
+Full documentation for the C-Chain's API can be found [here.](https://docs.avax.network/apis/qmallgo/apis/c-chain/)
 
 ## Compatibility
 

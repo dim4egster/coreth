@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/dim4egster/avalanchego/database/memdb"
-	"github.com/dim4egster/avalanchego/database/versiondb"
+	"github.com/dim4egster/qmallgo/database/memdb"
+	"github.com/dim4egster/qmallgo/database/versiondb"
 
 	"github.com/dim4egster/coreth/ethdb/memorydb"
 	"github.com/dim4egster/coreth/plugin/evm/message"
