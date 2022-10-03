@@ -30,15 +30,15 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/dim4egster/coreth/consensus"
-	"github.com/dim4egster/coreth/consensus/dummy"
-	"github.com/dim4egster/coreth/core/rawdb"
-	"github.com/dim4egster/coreth/core/types"
-	"github.com/dim4egster/coreth/core/vm"
-	"github.com/dim4egster/coreth/params"
+	"github.com/ava-labs/coreth/consensus"
+	"github.com/ava-labs/coreth/consensus/dummy"
+	"github.com/ava-labs/coreth/core/rawdb"
+	"github.com/ava-labs/coreth/core/types"
+	"github.com/ava-labs/coreth/core/vm"
+	"github.com/ava-labs/coreth/params"
+	"github.com/ava-labs/coreth/trie"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/trie"
 	"golang.org/x/crypto/sha3"
 )
 
@@ -48,24 +48,7 @@ import (
 // contain invalid transactions
 func TestStateProcessorErrors(t *testing.T) {
 	var (
-		config = &params.ChainConfig{
-			ChainID:                     big.NewInt(1),
-			HomesteadBlock:              big.NewInt(0),
-			EIP150Block:                 big.NewInt(0),
-			EIP150Hash:                  common.Hash{},
-			EIP155Block:                 big.NewInt(0),
-			EIP158Block:                 big.NewInt(0),
-			ByzantiumBlock:              big.NewInt(0),
-			ConstantinopleBlock:         big.NewInt(0),
-			PetersburgBlock:             big.NewInt(0),
-			IstanbulBlock:               big.NewInt(0),
-			MuirGlacierBlock:            big.NewInt(0),
-			ApricotPhase1BlockTimestamp: big.NewInt(0),
-			ApricotPhase2BlockTimestamp: big.NewInt(0),
-			ApricotPhase3BlockTimestamp: big.NewInt(0),
-			ApricotPhase4BlockTimestamp: big.NewInt(0),
-			ApricotPhase5BlockTimestamp: big.NewInt(0),
-		}
+		config     = params.TestChainConfig
 		signer     = types.LatestSigner(config)
 		testKey, _ = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 	)

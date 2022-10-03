@@ -8,9 +8,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dim4egster/avalanchego/chains/atomic"
-	"github.com/dim4egster/avalanchego/snow"
-	"github.com/dim4egster/coreth/params"
+	"github.com/ava-labs/avalanchego/chains/atomic"
+	"github.com/ava-labs/avalanchego/snow"
+	"github.com/ava-labs/coreth/params"
+	"github.com/stretchr/testify/require"
 )
 
 func TestCalculateDynamicFee(t *testing.T) {
@@ -59,19 +60,13 @@ type atomicTxVerifyTest struct {
 
 // executeTxVerifyTest tests
 func executeTxVerifyTest(t *testing.T, test atomicTxVerifyTest) {
+	require := require.New(t)
 	atomicTx := test.generate(t)
 	err := atomicTx.Verify(test.ctx, test.rules)
 	if len(test.expectedErr) == 0 {
-		if err != nil {
-			t.Fatalf("Atomic tx failed unexpectedly due to: %s", err)
-		}
+		require.NoError(err)
 	} else {
-		if err == nil {
-			t.Fatalf("Expected atomic tx test to fail due to: %s, but passed verification", test.expectedErr)
-		}
-		if !strings.Contains(err.Error(), test.expectedErr) {
-			t.Fatalf("Expected Verify to fail due to %s, but failed with: %s", test.expectedErr, err)
-		}
+		require.ErrorContains(err, test.expectedErr, "expected tx verify to fail with specified error")
 	}
 }
 
@@ -143,6 +138,13 @@ func executeTxTest(t *testing.T, test atomicTxTest) {
 		}
 		// If EVMStateTransfer failed for the expected reason, return early
 		return
+	}
+
+	if test.bootstrapping {
+		// If this test simulates processing txs during bootstrapping (where some verification is skipped),
+		// initialize the block building goroutines normally initialized in SetState(snow.NormalOps).
+		// This ensures that the VM can build a block correctly during the test.
+		vm.initBlockBuilding()
 	}
 
 	if err := vm.issueTx(tx, true /*=local*/); err != nil {
