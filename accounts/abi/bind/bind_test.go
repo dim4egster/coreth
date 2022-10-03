@@ -2046,9 +2046,9 @@ var bindTests = []struct {
 		imports: `
 			"math/big"
 
-			"github.com/ava-labs/coreth/accounts/abi/bind"
-			"github.com/ava-labs/coreth/accounts/abi/bind/backends"
-			"github.com/ava-labs/coreth/core"
+			"github.com/dim4egster/coreth/accounts/abi/bind"
+			"github.com/dim4egster/coreth/accounts/abi/bind/backends"
+			"github.com/dim4egster/coreth/core"
 			"github.com/ethereum/go-ethereum/crypto"
 		`,
 		tester: `
