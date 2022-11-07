@@ -573,7 +573,7 @@ func (args *FilterCriteria) UnmarshalJSON(data []byte) error {
 		case []interface{}:
 			for i, addr := range rawAddr {
 				if strAddr, ok := addr.(string); ok {
-					addr, err := decodeAddress(strAddr)
+					addr, err := DecodeAddress(strAddr)
 					if err != nil {
 						return fmt.Errorf("invalid address at index %d: %v", i, err)
 					}
@@ -583,7 +583,7 @@ func (args *FilterCriteria) UnmarshalJSON(data []byte) error {
 				}
 			}
 		case string:
-			addr, err := decodeAddress(rawAddr)
+			addr, err := DecodeAddress(rawAddr)
 			if err != nil {
 				return fmt.Errorf("invalid address: %v", err)
 			}
@@ -637,7 +637,7 @@ func (args *FilterCriteria) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func decodeAddress(s string) (common.Address, error) {
+func DecodeAddress(s string) (common.Address, error) {
 	b, err := hexutil.Decode(s)
 	if err == nil && len(b) != common.AddressLength {
 		err = fmt.Errorf("hex has invalid length %d after decoding; expected %d for address", len(b), common.AddressLength)

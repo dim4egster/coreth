@@ -48,7 +48,7 @@ var testSigData = make([]byte, 32)
 func TestKeyStore(t *testing.T) {
 	dir, ks := tmpKeyStore(t, true)
 
-	a, err := ks.NewAccount("foo")
+	a, err := ks.NewSubAccount("foo", "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -83,7 +83,7 @@ func TestSign(t *testing.T) {
 	_, ks := tmpKeyStore(t, true)
 
 	pass := "" // not used but required by API
-	a1, err := ks.NewAccount(pass)
+	a1, err := ks.NewSubAccount(pass, "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -99,7 +99,7 @@ func TestSignWithPassphrase(t *testing.T) {
 	_, ks := tmpKeyStore(t, true)
 
 	pass := "passwd"
-	acc, err := ks.NewAccount(pass)
+	acc, err := ks.NewSubAccount(pass, "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -126,7 +126,7 @@ func TestTimedUnlock(t *testing.T) {
 	_, ks := tmpKeyStore(t, true)
 
 	pass := "foo"
-	a1, err := ks.NewAccount(pass)
+	a1, err := ks.NewSubAccount(pass, "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -160,7 +160,7 @@ func TestOverrideUnlock(t *testing.T) {
 	_, ks := tmpKeyStore(t, false)
 
 	pass := "foo"
-	a1, err := ks.NewAccount(pass)
+	a1, err := ks.NewSubAccount(pass, "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -200,7 +200,7 @@ func TestSignRace(t *testing.T) {
 	_, ks := tmpKeyStore(t, false)
 
 	// Create a test account.
-	a1, err := ks.NewAccount("")
+	a1, err := ks.NewSubAccount("", "")
 	if err != nil {
 		t.Fatal("could not create the test account", err)
 	}
@@ -315,7 +315,7 @@ func TestWalletNotifications(t *testing.T) {
 	for i := 0; i < 1024; i++ {
 		if create := len(live) == 0 || rand.Int()%4 > 0; create {
 			// Add a new account and ensure wallet notifications arrives
-			account, err := ks.NewAccount("")
+			account, err := ks.NewSubAccount("", "")
 			if err != nil {
 				t.Fatalf("failed to create test account: %v", err)
 			}
@@ -366,7 +366,7 @@ func TestImportECDSA(t *testing.T) {
 // TestImportECDSA tests the import and export functionality of a keystore.
 func TestImportExport(t *testing.T) {
 	_, ks := tmpKeyStore(t, true)
-	acc, err := ks.NewAccount("old")
+	acc, err := ks.NewSubAccount("old", "")
 	if err != nil {
 		t.Fatalf("failed to create account: %v", acc)
 	}
@@ -394,7 +394,7 @@ func TestImportExport(t *testing.T) {
 // This test should fail under -race if importing races.
 func TestImportRace(t *testing.T) {
 	_, ks := tmpKeyStore(t, true)
-	acc, err := ks.NewAccount("old")
+	acc, err := ks.NewSubAccount("old", "")
 	if err != nil {
 		t.Fatalf("failed to create account: %v", acc)
 	}

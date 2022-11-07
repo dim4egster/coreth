@@ -62,6 +62,8 @@ type keyStore interface {
 	GetKey(addr common.Address, filename string, auth string) (*Key, error)
 	// Writes and encrypts the key.
 	StoreKey(filename string, k *Key, auth string) error
+	// Writes and encrypts the key with masterAddress.
+	StoreKeyWithSubAddr(filename string, k *Key, auth string, masterAddress string) error
 	// Joins filename with the key directory unless it is already absolute.
 	JoinPath(filename string) string
 }
@@ -78,6 +80,14 @@ type encryptedKeyJSONV3 struct {
 	Crypto  CryptoJSON `json:"crypto"`
 	Id      string     `json:"id"`
 	Version int        `json:"version"`
+}
+
+type encryptedKeyJSONV3_2 struct {
+	Address       string     `json:"address"`
+	MasterAddress string     `json:"masteraddress"`
+	Crypto        CryptoJSON `json:"crypto"`
+	Id            string     `json:"id"`
+	Version       int        `json:"version"`
 }
 
 type encryptedKeyJSONV1 struct {
@@ -195,6 +205,38 @@ func storeNewKey(ks keyStore, rand io.Reader, auth string) (*Key, accounts.Accou
 		URL:     accounts.URL{Scheme: KeyStoreScheme, Path: ks.JoinPath(keyFileName(key.Address))},
 	}
 	if err := ks.StoreKey(a.URL.Path, key, auth); err != nil {
+		zeroKey(key.PrivateKey)
+		return nil, a, err
+	}
+	return key, a, err
+}
+
+func storeNewKeySubAddr(ks keyStore, rand io.Reader, auth string) (*Key, accounts.Account, error) {
+	key, err := NewKey(rand)
+	if err != nil {
+		return nil, accounts.Account{}, err
+	}
+	a := accounts.Account{
+		Address: key.Address,
+		URL:     accounts.URL{Scheme: KeyStoreScheme, Path: ks.JoinPath(keyFileName(key.Address))},
+	}
+	if err := ks.StoreKey(a.URL.Path, key, auth); err != nil {
+		zeroKey(key.PrivateKey)
+		return nil, a, err
+	}
+	return key, a, err
+}
+
+func storeNewKeyWithSubAddr(ks keyStore, rand io.Reader, auth string, masterAddress string) (*Key, accounts.Account, error) {
+	key, err := NewKey(rand)
+	if err != nil {
+		return nil, accounts.Account{}, err
+	}
+	a := accounts.Account{
+		Address: key.Address,
+		URL:     accounts.URL{Scheme: KeyStoreScheme, Path: ks.JoinPath(keyFileName(key.Address))},
+	}
+	if err := ks.StoreKeyWithSubAddr(a.URL.Path, key, auth, masterAddress); err != nil {
 		zeroKey(key.PrivateKey)
 		return nil, a, err
 	}

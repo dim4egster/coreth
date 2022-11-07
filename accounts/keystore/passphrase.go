@@ -139,6 +139,33 @@ func (ks keyStorePassphrase) StoreKey(filename string, key *Key, auth string) er
 	return os.Rename(tmpName, filename)
 }
 
+func (ks keyStorePassphrase) StoreKeyWithSubAddr(filename string, key *Key, auth string, masterAddress string) error {
+	keyjson, err := EncryptKeyWithSubAddress(key, auth, ks.scryptN, ks.scryptP, masterAddress)
+	if err != nil {
+		return err
+	}
+	// Write into temporary file
+	tmpName, err := writeTemporaryKeyFile(filename, keyjson)
+	if err != nil {
+		return err
+	}
+	if !ks.skipKeyFileVerification {
+		// Verify that we can decrypt the file with the given password.
+		_, err = ks.GetKey(key.Address, tmpName, auth)
+		if err != nil {
+			msg := "An error was encountered when saving and verifying the keystore file. \n" +
+				"This indicates that the keystore is corrupted. \n" +
+				"The corrupted file is stored at \n%v\n" +
+				"Please file a ticket at:\n\n" +
+				"https://github.com/ethereum/go-ethereum/issues." +
+				"The error was : %s"
+			//lint:ignore ST1005 This is a message for the user
+			return fmt.Errorf(msg, tmpName, err)
+		}
+	}
+	return os.Rename(tmpName, filename)
+}
+
 func (ks keyStorePassphrase) JoinPath(filename string) string {
 	if filepath.IsAbs(filename) {
 		return filename
@@ -204,6 +231,23 @@ func EncryptKey(key *Key, auth string, scryptN, scryptP int) ([]byte, error) {
 		version,
 	}
 	return json.Marshal(encryptedKeyJSONV3)
+}
+
+//with masterAddress version
+func EncryptKeyWithSubAddress(key *Key, auth string, scryptN, scryptP int, masterAddress string) ([]byte, error) {
+	keyBytes := math.PaddedBigBytes(key.PrivateKey.D, 32)
+	cryptoStruct, err := EncryptDataV3(keyBytes, []byte(auth), scryptN, scryptP)
+	if err != nil {
+		return nil, err
+	}
+	encryptedKeyJSONV3_2 := encryptedKeyJSONV3_2{
+		hex.EncodeToString(key.Address[:]),
+		masterAddress,
+		cryptoStruct,
+		key.Id.String(),
+		version,
+	}
+	return json.Marshal(encryptedKeyJSONV3_2)
 }
 
 // DecryptKey decrypts a key from a json blob, returning the private key itself.

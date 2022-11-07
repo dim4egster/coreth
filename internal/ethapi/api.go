@@ -33,7 +33,6 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/accounts"
 	"github.com/dim4egster/coreth/accounts/abi"
@@ -47,6 +46,7 @@ import (
 	"github.com/dim4egster/coreth/params"
 	"github.com/dim4egster/coreth/rpc"
 	"github.com/dim4egster/coreth/vmerrs"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/common/math"
@@ -54,6 +54,9 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/tyler-smith/go-bip39"
+	"github.com/dim4egster/coreth/eth/filters"
+
+	
 )
 
 // EthereumAPI provides an API to access Ethereum related information.
@@ -356,6 +359,32 @@ func (s *PersonalAccountAPI) NewAccount(password string) (common.Address, error)
 		return common.Address{}, err
 	}
 	acc, err := ks.NewAccount(password)
+	if err == nil {
+		log.Info("Your new key was generated", "address", acc.Address)
+		log.Warn("Please backup your key file!", "path", acc.URL.Path)
+		log.Warn("Please remember your password!")
+		return acc.Address, nil
+	}
+	return common.Address{}, err
+}
+
+// NewSubAccount will create a new account under master address spending controls and returns the address for the new account.
+func (s *PersonalAccountAPI) NewSubAccount(password string, masterAddress string) (common.Address, error) {
+	ks, err := fetchKeystore(s.am)
+	if err != nil {
+		return common.Address{}, err
+	}
+
+	mAddress, err := filters.DecodeAddress(masterAddress)
+	if err != nil {
+		return common.Address{}, fmt.Errorf("invalid address: %s", masterAddress)
+	}
+
+	if !ks.HasAddress(mAddress) {
+		return common.Address{}, fmt.Errorf("creator must be the owner of master key: (%s)", masterAddress)
+	}
+
+	acc, err := ks.NewSubAccount(password, masterAddress)
 	if err == nil {
 		log.Info("Your new key was generated", "address", acc.Address)
 		log.Warn("Please backup your key file!", "path", acc.URL.Path)

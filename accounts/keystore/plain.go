@@ -63,6 +63,14 @@ func (ks keyStorePlain) StoreKey(filename string, key *Key, auth string) error {
 	return writeKeyFile(filename, content)
 }
 
+func (ks keyStorePlain) StoreKeyWithSubAddr(filename string, key *Key, auth string, masterAddress string) error {
+	content, err := json.Marshal(key)
+	if err != nil {
+		return err
+	}
+	return writeKeyFile(filename, content)
+}
+
 func (ks keyStorePlain) JoinPath(filename string) string {
 	if filepath.IsAbs(filename) {
 		return filename
