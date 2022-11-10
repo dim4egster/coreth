@@ -1879,6 +1879,7 @@ func (s *TransactionAPI) FillTransaction(ctx context.Context, args TransactionAr
 // The sender is responsible for signing the transaction and using the correct nonce.
 func (s *TransactionAPI) SendRawTransaction(ctx context.Context, input hexutil.Bytes) (common.Hash, error) {
 	tx := new(types.Transaction)
+	
 	if err := tx.UnmarshalBinary(input); err != nil {
 		return common.Hash{}, err
 	}
