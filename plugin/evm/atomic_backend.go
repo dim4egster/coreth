@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"time"
 
+	syncclient "github.com/dim4egster/coreth/sync/client"
 	"github.com/dim4egster/qmallgo/chains/atomic"
 	"github.com/dim4egster/qmallgo/codec"
 	"github.com/dim4egster/qmallgo/database"
@@ -15,7 +16,6 @@ import (
 	"github.com/dim4egster/qmallgo/database/versiondb"
 	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/qmallgo/utils/wrappers"
-	syncclient "github.com/dim4egster/coreth/sync/client"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 )

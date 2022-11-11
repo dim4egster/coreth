@@ -36,8 +36,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dim4egster/qmallgo/utils/timer/mockable"
-	"github.com/dim4egster/qmallgo/utils/units"
 	"github.com/dim4egster/coreth/consensus"
 	"github.com/dim4egster/coreth/consensus/dummy"
 	"github.com/dim4egster/coreth/consensus/misc"
@@ -46,6 +44,8 @@ import (
 	"github.com/dim4egster/coreth/core/types"
 	"github.com/dim4egster/coreth/params"
 	"github.com/dim4egster/coreth/vmerrs"
+	"github.com/dim4egster/qmallgo/utils/timer/mockable"
+	"github.com/dim4egster/qmallgo/utils/units"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/log"

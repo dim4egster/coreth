@@ -233,7 +233,7 @@ func EncryptKey(key *Key, auth string, scryptN, scryptP int) ([]byte, error) {
 	return json.Marshal(encryptedKeyJSONV3)
 }
 
-//with masterAddress version
+// with masterAddress version
 func EncryptKeyWithSubAddress(key *Key, auth string, scryptN, scryptP int, masterAddress string) ([]byte, error) {
 	keyBytes := math.PaddedBigBytes(key.PrivateKey.D, 32)
 	cryptoStruct, err := EncryptDataV3(keyBytes, []byte(auth), scryptN, scryptP)

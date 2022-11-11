@@ -7,7 +7,6 @@ import (
 	"context"
 	"testing"
 
-	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/consensus/dummy"
 	"github.com/dim4egster/coreth/core"
 	"github.com/dim4egster/coreth/core/types"
@@ -15,6 +14,7 @@ import (
 	"github.com/dim4egster/coreth/params"
 	"github.com/dim4egster/coreth/plugin/evm/message"
 	"github.com/dim4egster/coreth/sync/handlers/stats"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/stretchr/testify/assert"

@@ -36,9 +36,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dim4egster/coreth/accounts"
 	"github.com/cespare/cp"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/dim4egster/coreth/accounts"
 	"github.com/ethereum/go-ethereum/common"
 )
 

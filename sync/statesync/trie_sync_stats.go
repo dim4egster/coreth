@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	utils_math "github.com/dim4egster/qmallgo/utils/math"
 	"github.com/dim4egster/coreth/metrics"
+	utils_math "github.com/dim4egster/qmallgo/utils/math"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 )

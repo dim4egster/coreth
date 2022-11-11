@@ -4,8 +4,8 @@
 package peer
 
 import (
-	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/plugin/evm/message"
+	"github.com/dim4egster/qmallgo/ids"
 )
 
 var _ message.ResponseHandler = &waitingResponseHandler{}

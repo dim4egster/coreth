@@ -9,13 +9,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/dim4egster/coreth/core"
+	"github.com/dim4egster/coreth/core/types"
+	"github.com/dim4egster/coreth/trie"
 	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/qmallgo/snow/choices"
 	"github.com/dim4egster/qmallgo/utils/crypto"
 	"github.com/dim4egster/qmallgo/vms/components/chain"
-	"github.com/dim4egster/coreth/core"
-	"github.com/dim4egster/coreth/core/types"
-	"github.com/dim4egster/coreth/trie"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/assert"
 )

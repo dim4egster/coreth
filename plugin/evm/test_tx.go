@@ -9,14 +9,14 @@ import (
 
 	"github.com/dim4egster/qmallgo/utils"
 
+	"github.com/dim4egster/coreth/core/state"
+	"github.com/dim4egster/coreth/params"
 	"github.com/dim4egster/qmallgo/chains/atomic"
 	"github.com/dim4egster/qmallgo/codec"
 	"github.com/dim4egster/qmallgo/codec/linearcodec"
 	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/qmallgo/snow"
 	"github.com/dim4egster/qmallgo/utils/wrappers"
-	"github.com/dim4egster/coreth/core/state"
-	"github.com/dim4egster/coreth/params"
 )
 
 type TestUnsignedTx struct {

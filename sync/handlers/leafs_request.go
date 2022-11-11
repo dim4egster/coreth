@@ -10,10 +10,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dim4egster/qmallgo/codec"
-	"github.com/dim4egster/qmallgo/ids"
-	"github.com/dim4egster/qmallgo/utils/math"
-	"github.com/dim4egster/qmallgo/utils/wrappers"
 	"github.com/dim4egster/coreth/core/state/snapshot"
 	"github.com/dim4egster/coreth/core/types"
 	"github.com/dim4egster/coreth/ethdb"
@@ -23,6 +19,10 @@ import (
 	"github.com/dim4egster/coreth/sync/syncutils"
 	"github.com/dim4egster/coreth/trie"
 	"github.com/dim4egster/coreth/utils"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/ids"
+	"github.com/dim4egster/qmallgo/utils/math"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 )

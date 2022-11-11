@@ -9,13 +9,13 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/dim4egster/qmallgo/utils/wrappers"
 	"github.com/dim4egster/coreth/core/rawdb"
 	"github.com/dim4egster/coreth/ethdb"
 	"github.com/dim4egster/coreth/plugin/evm/message"
 	syncclient "github.com/dim4egster/coreth/sync/client"
 	"github.com/dim4egster/coreth/trie"
 	"github.com/dim4egster/coreth/utils"
+	"github.com/dim4egster/qmallgo/utils/wrappers"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 )

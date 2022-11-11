@@ -8,6 +8,7 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/dim4egster/coreth/params"
 	"github.com/dim4egster/qmallgo/chains/atomic"
 	"github.com/dim4egster/qmallgo/ids"
 	engCommon "github.com/dim4egster/qmallgo/snow/engine/common"
@@ -16,7 +17,6 @@ import (
 	"github.com/dim4egster/qmallgo/utils/units"
 	"github.com/dim4egster/qmallgo/vms/components/avax"
 	"github.com/dim4egster/qmallgo/vms/secp256k1fx"
-	"github.com/dim4egster/coreth/params"
 	"github.com/ethereum/go-ethereum/common"
 )
 

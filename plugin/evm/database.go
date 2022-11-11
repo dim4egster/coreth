@@ -4,8 +4,8 @@
 package evm
 
 import (
-	"github.com/dim4egster/qmallgo/database"
 	"github.com/dim4egster/coreth/ethdb"
+	"github.com/dim4egster/qmallgo/database"
 )
 
 var _ ethdb.Database = &Database{}

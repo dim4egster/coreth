@@ -10,11 +10,11 @@ import (
 
 	"github.com/dim4egster/coreth/params"
 
-	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/core/rawdb"
 	"github.com/dim4egster/coreth/ethdb/memorydb"
 	"github.com/dim4egster/coreth/plugin/evm/message"
 	"github.com/dim4egster/coreth/sync/handlers/stats"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/stretchr/testify/assert"

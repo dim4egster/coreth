@@ -28,11 +28,11 @@
 package miner
 
 import (
-	"github.com/dim4egster/qmallgo/utils/timer/mockable"
 	"github.com/dim4egster/coreth/consensus"
 	"github.com/dim4egster/coreth/core"
 	"github.com/dim4egster/coreth/core/types"
 	"github.com/dim4egster/coreth/params"
+	"github.com/dim4egster/qmallgo/utils/timer/mockable"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/event"
 )

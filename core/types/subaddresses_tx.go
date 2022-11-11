@@ -34,19 +34,18 @@ import (
 
 //go:generate go run github.com/fjl/gencodec -type AccessTuple -out gen_access_tuple.go
 
-
 // SubAddressesTx is the data of EIP-2930 access list transactions.
 type SubAddressesTx struct {
-	ChainID    *big.Int        // destination chain ID
-	Nonce      uint64          // nonce of sender account
-	GasPrice   *big.Int        // wei per gas
-	Gas        uint64          // gas limit
-	To         *common.Address `rlp:"nil"` // nil means contract creation
-	Value      *big.Int        // wei amount
-	Data       []byte          // contract invocation input data
-	AccessList AccessList
-	UseSubAddresses bool       // allow spend coins from subaddresses
-	V, R, S    *big.Int        // signature values
+	ChainID         *big.Int        // destination chain ID
+	Nonce           uint64          // nonce of sender account
+	GasPrice        *big.Int        // wei per gas
+	Gas             uint64          // gas limit
+	To              *common.Address `rlp:"nil"` // nil means contract creation
+	Value           *big.Int        // wei amount
+	Data            []byte          // contract invocation input data
+	AccessList      AccessList
+	UseSubAddresses bool     // allow spend coins from subaddresses
+	V, R, S         *big.Int // signature values
 }
 
 // copy creates a deep copy of the transaction data and initializes all fields.
@@ -57,14 +56,14 @@ func (tx *SubAddressesTx) copy() TxData {
 		Data:  common.CopyBytes(tx.Data),
 		Gas:   tx.Gas,
 		// These are copied below.
-		AccessList: make(AccessList, len(tx.AccessList)),
+		AccessList:      make(AccessList, len(tx.AccessList)),
 		UseSubAddresses: false,
-		Value:      new(big.Int),
-		ChainID:    new(big.Int),
-		GasPrice:   new(big.Int),
-		V:          new(big.Int),
-		R:          new(big.Int),
-		S:          new(big.Int),
+		Value:           new(big.Int),
+		ChainID:         new(big.Int),
+		GasPrice:        new(big.Int),
+		V:               new(big.Int),
+		R:               new(big.Int),
+		S:               new(big.Int),
 	}
 
 	copy(cpy.AccessList, tx.AccessList)
@@ -101,7 +100,7 @@ func (tx *SubAddressesTx) gasFeeCap() *big.Int    { return tx.GasPrice }
 func (tx *SubAddressesTx) value() *big.Int        { return tx.Value }
 func (tx *SubAddressesTx) nonce() uint64          { return tx.Nonce }
 func (tx *SubAddressesTx) to() *common.Address    { return tx.To }
-func (tx *SubAddressesTx) useSubAddresses() bool    { return tx.UseSubAddresses }
+func (tx *SubAddressesTx) useSubAddresses() bool  { return tx.UseSubAddresses }
 
 func (tx *SubAddressesTx) rawSignatureValues() (v, r, s *big.Int) {
 	return tx.V, tx.R, tx.S

@@ -6,13 +6,13 @@ package handlers
 import (
 	"context"
 
-	"github.com/dim4egster/qmallgo/codec"
-	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/core/state/snapshot"
 	"github.com/dim4egster/coreth/core/types"
 	"github.com/dim4egster/coreth/plugin/evm/message"
 	"github.com/dim4egster/coreth/sync/handlers/stats"
 	"github.com/dim4egster/coreth/trie"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/ethereum/go-ethereum/common"
 )
 

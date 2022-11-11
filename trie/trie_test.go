@@ -38,10 +38,10 @@ import (
 	"testing"
 	"testing/quick"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/dim4egster/coreth/core/rawdb"
 	"github.com/dim4egster/coreth/ethdb"
 	"github.com/dim4egster/coreth/ethdb/memorydb"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"

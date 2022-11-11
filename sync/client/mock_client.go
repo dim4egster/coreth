@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/dim4egster/qmallgo/codec"
-	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/core/types"
 	"github.com/dim4egster/coreth/plugin/evm/message"
 	"github.com/dim4egster/coreth/sync/handlers"
+	"github.com/dim4egster/qmallgo/codec"
+	"github.com/dim4egster/qmallgo/ids"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
 )

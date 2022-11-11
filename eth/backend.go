@@ -34,7 +34,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dim4egster/qmallgo/utils/timer/mockable"
 	"github.com/dim4egster/coreth/accounts"
 	"github.com/dim4egster/coreth/consensus"
 	"github.com/dim4egster/coreth/consensus/dummy"
@@ -55,6 +54,7 @@ import (
 	"github.com/dim4egster/coreth/node"
 	"github.com/dim4egster/coreth/params"
 	"github.com/dim4egster/coreth/rpc"
+	"github.com/dim4egster/qmallgo/utils/timer/mockable"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/log"

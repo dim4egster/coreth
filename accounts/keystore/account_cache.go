@@ -37,8 +37,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dim4egster/coreth/accounts"
 	mapset "github.com/deckarep/golang-set"
+	"github.com/dim4egster/coreth/accounts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 )

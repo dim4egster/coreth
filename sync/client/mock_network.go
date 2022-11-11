@@ -6,8 +6,8 @@ package statesyncclient
 import (
 	"errors"
 
-	"github.com/dim4egster/qmallgo/ids"
 	"github.com/dim4egster/coreth/peer"
+	"github.com/dim4egster/qmallgo/ids"
 
 	"github.com/dim4egster/qmallgo/version"
 )

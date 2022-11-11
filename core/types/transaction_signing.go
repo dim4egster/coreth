@@ -297,7 +297,7 @@ func (s eip2930Signer) SignatureValues(tx *Transaction, sig []byte) (R, S, V *bi
 		R, S, _ = decodeSignature(sig)
 		V = big.NewInt(int64(sig[64]))
 
-	case  *SubAddressesTx:
+	case *SubAddressesTx:
 		// Check that chain ID of tx matches the signer. We also accept ID zero here,
 		// because it indicates that the chain ID was not specified in the tx.
 		if txdata.ChainID.Sign() != 0 && txdata.ChainID.Cmp(s.chainId) != 0 {
@@ -305,7 +305,7 @@ func (s eip2930Signer) SignatureValues(tx *Transaction, sig []byte) (R, S, V *bi
 		}
 		R, S, _ = decodeSignature(sig)
 		V = big.NewInt(int64(sig[64]))
-		
+
 	default:
 		return nil, nil, nil, ErrTxTypeNotSupported
 	}
@@ -326,33 +326,33 @@ func (s eip2930Signer) Hash(tx *Transaction) common.Hash {
 			tx.Data(),
 			s.chainId, uint(0), uint(0),
 		})
-		case AccessListTxType:
-			return prefixedRlpHash(
-				tx.Type(),
-				[]interface{}{
-					s.chainId,
-					tx.Nonce(),
-					tx.GasPrice(),
-					tx.Gas(),
-					tx.To(),
-					tx.Value(),
-					tx.Data(),
-					tx.AccessList(),
-				})
-		case SubAddressesTxType:
-			return prefixedRlpHash(
-				tx.Type(),
-				[]interface{}{
-					s.chainId,
-					tx.Nonce(),
-					tx.GasPrice(),
-					tx.Gas(),
-					tx.To(),
-					tx.Value(),
-					tx.Data(),
-					tx.AccessList(),
-					tx.UseSubAddresses(),
-				})
+	case AccessListTxType:
+		return prefixedRlpHash(
+			tx.Type(),
+			[]interface{}{
+				s.chainId,
+				tx.Nonce(),
+				tx.GasPrice(),
+				tx.Gas(),
+				tx.To(),
+				tx.Value(),
+				tx.Data(),
+				tx.AccessList(),
+			})
+	case SubAddressesTxType:
+		return prefixedRlpHash(
+			tx.Type(),
+			[]interface{}{
+				s.chainId,
+				tx.Nonce(),
+				tx.GasPrice(),
+				tx.Gas(),
+				tx.To(),
+				tx.Value(),
+				tx.Data(),
+				tx.AccessList(),
+				tx.UseSubAddresses(),
+			})
 	default:
 		// This _should_ not happen, but in case someone sends in a bad
 		// json struct via RPC, it's probably more prudent to return an

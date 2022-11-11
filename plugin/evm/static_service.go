@@ -7,8 +7,8 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/dim4egster/qmallgo/utils/formatting"
 	"github.com/dim4egster/coreth/core"
+	"github.com/dim4egster/qmallgo/utils/formatting"
 )
 
 // StaticService defines the static API services exposed by the evm
