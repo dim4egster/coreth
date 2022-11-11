@@ -12,7 +12,7 @@ fi
 avalanche_testing_repo="dim4egster/qmallgo-testing"
 avalanchego_repo="dim4egster/qmallgo"
 # Define default avalanche testing version to use
-avalanche_testing_image="${avalanche_testing_repo}:master"
+avalanche_testing_image="${avalanche_testing_repo}:latest"
 
 # Avalanche root directory
 CORETH_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )"; cd ../.. && pwd )
