@@ -9,8 +9,8 @@ if [[ -z ${DOCKER_USERNAME} ]]; then
 fi
 
 # Testing specific variables
-avalanche_testing_repo="avaplatform/avalanche-testing"
-avalanchego_repo="avaplatform/qmallgo"
+avalanche_testing_repo="dim4egster/qmallgo-testing"
+avalanchego_repo="dim4egster/qmallgo"
 # Define default avalanche testing version to use
 avalanche_testing_image="${avalanche_testing_repo}:master"
 
