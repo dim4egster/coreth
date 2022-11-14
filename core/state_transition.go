@@ -91,6 +91,7 @@ type Message interface {
 	IsFake() bool
 	Data() []byte
 	AccessList() types.AccessList
+	UseSubAddresses() bool
 }
 
 // ExecutionResult includes all output after executing given evm
@@ -348,7 +349,11 @@ func (st *StateTransition) TransitionDb() (*ExecutionResult, error) {
 	} else {
 		// Increment the nonce for the next transaction
 		st.state.SetNonce(msg.From(), st.state.GetNonce(sender.Address())+1)
-		ret, st.gas, vmerr = st.evm.Call(sender, st.to(), st.data, st.gas, st.value)
+		if !msg.UseSubAddresses() {
+			ret, st.gas, vmerr = st.evm.Call(sender, st.to(), st.data, st.gas, st.value)
+		} else {
+			ret, st.gas, vmerr = st.evm.Call2(sender, st.to(), st.data, st.gas, st.value, msg.UseSubAddresses())
+		}
 	}
 	if errors.Is(vmerr, vmerrs.ErrToAddrProhibitedSoft) { // Only invalidate soft error here
 		return &ExecutionResult{
