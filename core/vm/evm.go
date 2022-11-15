@@ -335,7 +335,7 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 	return ret, gas, err
 }
 
-//The same like Call method but allow to use set of subaddresses as extra sender's 
+// The same like Call method but allow to use set of subaddresses as extra sender's
 func (evm *EVM) Call2(caller ContractRef, addr common.Address, input []byte, gas uint64, value *big.Int, useSubAdresses bool) (ret []byte, leftOverGas uint64, err error) {
 	if prohibitErr := evm.isProhibitedWithTimestamp(addr); prohibitErr != nil {
 		return nil, gas, prohibitErr
