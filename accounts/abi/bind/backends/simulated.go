@@ -828,7 +828,7 @@ func (b *SimulatedBackend) AdjustTime(adjustment time.Duration) error {
 	defer b.mu.Unlock()
 
 	if len(b.acceptedBlock.Transactions()) != 0 {
-		return errors.New("Could not adjust time on non-empty block")
+		return errors.New("сould not adjust time on non-empty block")
 	}
 
 	blocks, _, _ := core.GenerateChain(b.config, b.blockchain.CurrentBlock(), dummy.NewFaker(), b.database, 1, 10, func(number int, block *core.BlockGen) {
@@ -899,7 +899,7 @@ func (fb *filterBackend) GetMaxBlocksPerRequest() int64 {
 
 func (fb *filterBackend) ChainDb() ethdb.Database { return fb.db }
 
-func (fb *filterBackend) EventMux() *event.TypeMux { panic("not supported") }
+func (fb *filterBackend) EventMux() *event.Feed { panic("not supported") }
 
 func (fb *filterBackend) HeaderByNumber(ctx context.Context, block rpc.BlockNumber) (*types.Header, error) {
 	if block == rpc.LatestBlockNumber {
