@@ -140,7 +140,8 @@ jobs:
       # mv qmallgo/ to nested dir qmallgo/qmallgo/
       # required because docker instruction "COPY dir ." copies dir/* to .
       run: mkdir avalanchego_tmp && mv qmallgo avalanchego_tmp && mv avalanchego_tmp qmallgo
-    - run: .github/workflows/run_e2e_tests.sh --parallelism 1 --client-id $KURTOSIS_CLIENT_ID --client-secret $KURTOSIS_CLIENT_SECRET
+    #temporary commented while not set KURTOSIS_CLIENT_ID and KURTOSIS_CLIENT_SECRET credentials in github secrets
+    #- run: .github/workflows/run_e2e_tests.sh --parallelism 1 --client-id $KURTOSIS_CLIENT_ID --client-secret $KURTOSIS_CLIENT_SECRET
       shell: bash
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
