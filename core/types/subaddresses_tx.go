@@ -34,6 +34,19 @@ import (
 
 //go:generate go run github.com/fjl/gencodec -type AccessTuple -out gen_access_tuple.go
 
+// SubAddresses is array of signatures for QMALL multispending in one trx
+type SubAddresses []SubAddrTuple
+
+// AccessTuple is the element type of an access list.
+type SubAddrTuple struct {
+	// Signature values
+	V *big.Int `json:"v" gencodec:"required"`
+	R *big.Int `json:"r" gencodec:"required"`
+	S *big.Int `json:"s" gencodec:"required"`
+	Value      *big.Int
+}
+
+
 // SubAddressesTx is the data of EIP-2930 access list transactions.
 type SubAddressesTx struct {
 	ChainID         *big.Int        // destination chain ID
@@ -44,8 +57,9 @@ type SubAddressesTx struct {
 	Value           *big.Int        // wei amount
 	Data            []byte          // contract invocation input data
 	AccessList      AccessList
-	UseSubAddresses bool     // allow spend coins from subaddresses
-	V, R, S         *big.Int // signature values
+	UseSubAddresses bool     		// allow spend coins from subaddresses
+	SubAddresses	SubAddresses 	// array of subaddresses signatures and values for spending
+	V, R, S         *big.Int 		// signature values
 }
 
 // copy creates a deep copy of the transaction data and initializes all fields.
@@ -57,7 +71,8 @@ func (tx *SubAddressesTx) copy() TxData {
 		Gas:   tx.Gas,
 		// These are copied below.
 		AccessList:      make(AccessList, len(tx.AccessList)),
-		UseSubAddresses: false,
+		UseSubAddresses: tx.UseSubAddresses,
+		SubAddresses: 	 make(SubAddresses, len(tx.SubAddresses)),
 		Value:           new(big.Int),
 		ChainID:         new(big.Int),
 		GasPrice:        new(big.Int),
@@ -67,6 +82,8 @@ func (tx *SubAddressesTx) copy() TxData {
 	}
 
 	copy(cpy.AccessList, tx.AccessList)
+	copy(cpy.SubAddresses, tx.SubAddresses)
+	
 	if tx.Value != nil {
 		cpy.Value.Set(tx.Value)
 	}
@@ -101,6 +118,7 @@ func (tx *SubAddressesTx) value() *big.Int        { return tx.Value }
 func (tx *SubAddressesTx) nonce() uint64          { return tx.Nonce }
 func (tx *SubAddressesTx) to() *common.Address    { return tx.To }
 func (tx *SubAddressesTx) useSubAddresses() bool  { return tx.UseSubAddresses }
+func (tx *SubAddressesTx) subAddresses() SubAddresses  	{ return tx.SubAddresses }
 
 func (tx *SubAddressesTx) rawSignatureValues() (v, r, s *big.Int) {
 	return tx.V, tx.R, tx.S
