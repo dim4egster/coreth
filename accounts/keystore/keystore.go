@@ -244,6 +244,11 @@ func (ks *KeyStore) Accounts() []accounts.Account {
 	return ks.cache.accounts()
 }
 
+// Accounts returns all key files present in the directory.
+func (ks *KeyStore) AccountsByMasterAddr() []accounts.Account {
+	return ks.cache.accounts()
+}
+
 // Delete deletes the key matched by account if the passphrase is correct.
 // If the account contains no filename, the address must match a unique key.
 func (ks *KeyStore) Delete(a accounts.Account, passphrase string) error {

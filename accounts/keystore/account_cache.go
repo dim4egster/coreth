@@ -255,6 +255,7 @@ func (ac *accountCache) scanAccounts() error {
 		buf = new(bufio.Reader)
 		key struct {
 			Address string `json:"address"`
+			MasterAddress string `json:"masteraddress"`
 		}
 	)
 	readAccount := func(path string) *accounts.Account {
@@ -267,8 +268,10 @@ func (ac *accountCache) scanAccounts() error {
 		buf.Reset(fd)
 		// Parse the address.
 		key.Address = ""
+		key.MasterAddress = ""
 		err = json.NewDecoder(buf).Decode(&key)
 		addr := common.HexToAddress(key.Address)
+		masteradddress := common.HexToAddress(key.MasterAddress)
 		switch {
 		case err != nil:
 			log.Debug("Failed to decode keystore key", "path", path, "err", err)
@@ -277,6 +280,7 @@ func (ac *accountCache) scanAccounts() error {
 		default:
 			return &accounts.Account{
 				Address: addr,
+				MasterAddress: masteradddress,
 				URL:     accounts.URL{Scheme: KeyStoreScheme, Path: path},
 			}
 		}

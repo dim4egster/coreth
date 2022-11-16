@@ -242,7 +242,7 @@ func EncryptKeyWithSubAddress(key *Key, auth string, scryptN, scryptP int, maste
 	}
 	encryptedKeyJSONV3_2 := encryptedKeyJSONV3_2{
 		hex.EncodeToString(key.Address[:]),
-		masterAddress,
+		masterAddress[2:],
 		cryptoStruct,
 		key.Id.String(),
 		version,
