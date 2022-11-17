@@ -92,6 +92,7 @@ type Message interface {
 	Data() []byte
 	AccessList() types.AccessList
 	UseSubAddresses() bool
+	SubAddressesMsg() types.SubAddressesMsg
 }
 
 // ExecutionResult includes all output after executing given evm
@@ -332,9 +333,16 @@ func (st *StateTransition) TransitionDb() (*ExecutionResult, error) {
 	st.gas -= gas
 
 	// Check clause 6
-	if msg.Value().Sign() > 0 && !st.evm.Context.CanTransfer(st.state, msg.From(), msg.Value()) {
-		return nil, fmt.Errorf("%w: address %v", ErrInsufficientFundsForTransfer, msg.From().Hex())
+	if !st.msg.UseSubAddresses() {
+		if msg.Value().Sign() > 0 && !st.evm.Context.CanTransfer(st.state, msg.From(), msg.Value()) {
+			return nil, fmt.Errorf("%w: address %v", ErrInsufficientFundsForTransfer, msg.From().Hex())
+		}
+	} else {
+		if msg.Value().Sign() > 0 && !st.evm.Context.CanTransferWithSubAddrs(st.state, msg.From(), msg.SubAddressesMsg(), msg.Value()) {
+			return nil, fmt.Errorf("%w: address %v", ErrInsufficientFundsForTransfer, msg.From().Hex())
+		}
 	}
+
 
 	// Set up the initial access list.
 	if rules.IsApricotPhase2 {
@@ -352,7 +360,7 @@ func (st *StateTransition) TransitionDb() (*ExecutionResult, error) {
 		if !msg.UseSubAddresses() {
 			ret, st.gas, vmerr = st.evm.Call(sender, st.to(), st.data, st.gas, st.value)
 		} else {
-			ret, st.gas, vmerr = st.evm.Call2(sender, st.to(), st.data, st.gas, st.value, msg.UseSubAddresses())
+			ret, st.gas, vmerr = st.evm.Call2(sender, st.to(), st.data, st.gas, st.value, msg.SubAddressesMsg())
 		}
 	}
 	if errors.Is(vmerr, vmerrs.ErrToAddrProhibitedSoft) { // Only invalidate soft error here

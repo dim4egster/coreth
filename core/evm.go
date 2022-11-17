@@ -130,6 +130,23 @@ func CanTransfer(db vm.StateDB, addr common.Address, amount *big.Int) bool {
 	return db.GetBalance(addr).Cmp(amount) >= 0
 }
 
+// CanTransferWithSubAddrs checks whether there are enough funds in the master address' account and subaddresses to make a transfer.
+// This does not take the necessary gas in to account to make the transfer valid.
+func CanTransferWithSubAddrs(db vm.StateDB, masterAddr common.Address, subAddrs types.SubAddressesMsg, amount *big.Int) bool {
+	subAddrsSum := big.NewInt(0)
+	// append master address balance
+	totalBal := db.GetBalance(masterAddr)
+	for _, subaddr := range subAddrs {
+
+		// check availability every subbalance
+		if db.GetBalance(subaddr.Address).Cmp(subaddr.Value) < 0 {
+			return false
+		}
+		subAddrsSum = subAddrsSum.Add(subAddrsSum, subaddr.Value)
+	}
+	return totalBal.Add(totalBal, subAddrsSum).Cmp(amount) >= 0
+}
+
 func CanTransferMC(db vm.StateDB, addr common.Address, to common.Address, coinID common.Hash, amount *big.Int) bool {
 	return db.GetBalanceMultiCoin(addr, coinID).Cmp(amount) >= 0
 }

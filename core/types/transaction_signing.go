@@ -155,6 +155,33 @@ func Sender(signer Signer, tx *Transaction) (common.Address, error) {
 	return addr, nil
 }
 
+// Sender returns the address derived from the signature (V, R, S) using secp256k1
+// elliptic curve and an error if it failed deriving or upon an incorrect
+// signature.
+//
+// Sender may cache the address, allowing it to be used regardless of
+// signing method. The cache is invalidated if the cached signer does
+// not match the signer used in the current call.
+func SubSenders(signer Signer, tx *Transaction) ([]common.Address, error) {
+	subaddresses := make([]common.Address, 0) // return [] instead of nil if empty
+	if sc := tx.from.Load(); sc != nil {
+		sigCache := sc.(sigCache)
+		// If the signer used to derive from in a previous
+		// call is not the same as used current, invalidate
+		// the cache.
+		if sigCache.signer.Equal(signer) {
+			return subaddresses, nil
+		}
+	}
+
+	subaddresses, err := signer.SubSenders(tx) 
+	if err != nil {
+		return subaddresses, err
+	}
+	//tx.from.Store(sigCache{signer: signer, from: addr})
+	return subaddresses, nil
+}
+
 // Signer encapsulates transaction signature handling. The name of this type is slightly
 // misleading because Signers don't actually sign, they're just for validating and
 // processing of signatures.
@@ -164,6 +191,9 @@ func Sender(signer Signer, tx *Transaction) (common.Address, error) {
 type Signer interface {
 	// Sender returns the sender address of the transaction.
 	Sender(tx *Transaction) (common.Address, error)
+
+	// SubSenders returns array of subsenders of transactions, if present.
+	SubSenders(tx *Transaction) ([]common.Address, error)
 
 	// SignatureValues returns the raw R, S, V values corresponding to the
 	// given signature.
@@ -201,6 +231,10 @@ func (s londonSigner) Sender(tx *Transaction) (common.Address, error) {
 		return common.Address{}, ErrInvalidChainId
 	}
 	return recoverPlain(s.Hash(tx), R, S, V, true)
+}
+
+func (s londonSigner) SubSenders(tx *Transaction) ([]common.Address, error) {
+	return []common.Address{}, nil  
 }
 
 func (s londonSigner) Equal(s2 Signer) bool {
@@ -281,6 +315,25 @@ func (s eip2930Signer) Sender(tx *Transaction) (common.Address, error) {
 		return common.Address{}, ErrInvalidChainId
 	}
 	return recoverPlain(s.Hash(tx), R, S, V, true)
+}
+
+func (s eip2930Signer) SubSenders(tx *Transaction) ([]common.Address, error) {
+	addresses := []common.Address{}
+	if SubAddressesTxType == tx.Type() {
+		for _, sign := range tx.SubAddresses() {
+			V := sign.V
+			V = new(big.Int).Add(V, big.NewInt(27))
+			if tx.ChainId().Cmp(s.chainId) != 0 {
+				return addresses, ErrInvalidChainId
+			}
+			addr, err := recoverPlain(s.Hash(tx), sign.R, sign.S, V, true)
+			if(err != nil){
+				return []common.Address{}, err
+			}
+			addresses = append(addresses, addr)
+		}
+	}
+	return addresses, nil  
 }
 
 func (s eip2930Signer) SignatureValues(tx *Transaction, sig []byte) (R, S, V *big.Int, err error) {
@@ -405,6 +458,10 @@ func (s EIP155Signer) Sender(tx *Transaction) (common.Address, error) {
 	return recoverPlain(s.Hash(tx), R, S, V, true)
 }
 
+func (s EIP155Signer) SubSenders(tx *Transaction) ([]common.Address, error) {
+	return []common.Address{}, nil  
+}
+
 // SignatureValues returns signature values. This signature
 // needs to be in the [R || S || V] format where V is 0 or 1.
 func (s EIP155Signer) SignatureValues(tx *Transaction, sig []byte) (R, S, V *big.Int, err error) {
@@ -477,6 +534,10 @@ func (fs FrontierSigner) Sender(tx *Transaction) (common.Address, error) {
 	}
 	v, r, s := tx.RawSignatureValues()
 	return recoverPlain(fs.Hash(tx), r, s, v, false)
+}
+
+func (fs FrontierSigner) SubSenders(tx *Transaction) ([]common.Address, error) {
+	return []common.Address{}, nil  
 }
 
 // SignatureValues returns signature values. This signature

@@ -37,7 +37,7 @@ import (
 // SubAddresses is array of signatures for QMALL multispending in one trx
 type SubAddresses []SubAddrTuple
 
-// AccessTuple is the element type of an access list.
+// SubAddrTuple is the element type of an signatures sub addresses.
 type SubAddrTuple struct {
 	// Signature values
 	V *big.Int `json:"v" gencodec:"required"`
@@ -46,6 +46,14 @@ type SubAddrTuple struct {
 	Value      *big.Int
 }
 
+// SubAddresses is array of subaddresses for QMALL multispending in one trx
+type SubAddressesMsg []SubAddrMsgTuple
+
+type SubAddrMsgTuple struct {
+	// Signature values
+	Address    common.Address `json:"address"        gencodec:"required"`
+	Value      *big.Int
+}
 
 // SubAddressesTx is the data of EIP-2930 access list transactions.
 type SubAddressesTx struct {
@@ -83,7 +91,7 @@ func (tx *SubAddressesTx) copy() TxData {
 
 	copy(cpy.AccessList, tx.AccessList)
 	copy(cpy.SubAddresses, tx.SubAddresses)
-	
+
 	if tx.Value != nil {
 		cpy.Value.Set(tx.Value)
 	}

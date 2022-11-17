@@ -61,6 +61,10 @@ func (s *senderFromServer) Sender(tx *types.Transaction) (common.Address, error)
 	return s.addr, nil
 }
 
+func (s *senderFromServer) SubSenders(tx *types.Transaction) ([]common.Address, error) {
+	return []common.Address{}, nil  
+}
+
 func (s *senderFromServer) ChainID() *big.Int {
 	panic("can't sign with senderFromServer")
 }

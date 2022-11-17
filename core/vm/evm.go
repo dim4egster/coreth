@@ -35,6 +35,7 @@ import (
 	"github.com/dim4egster/coreth/params"
 	"github.com/dim4egster/coreth/precompile"
 	"github.com/dim4egster/coreth/vmerrs"
+	"github.com/dim4egster/coreth/core/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/holiman/uint256"
@@ -85,6 +86,7 @@ var emptyCodeHash = crypto.Keccak256Hash(nil)
 type (
 	// CanTransferFunc is the signature of a transfer guard function
 	CanTransferFunc   func(StateDB, common.Address, *big.Int) bool
+	CanTransferWithSubAddrsFunc   func(db StateDB, masterAddr common.Address, subAddrs types.SubAddressesMsg, amount *big.Int) bool
 	CanTransferMCFunc func(StateDB, common.Address, common.Address, common.Hash, *big.Int) bool
 	// TransferFunc is the signature of a transfer function
 	TransferFunc   func(StateDB, common.Address, common.Address, *big.Int)
@@ -126,6 +128,9 @@ type BlockContext struct {
 	// CanTransfer returns whether the account contains
 	// sufficient ether to transfer the value
 	CanTransfer CanTransferFunc
+	// CanTransferWithSubAddrs returns whether the master account (From) and subaccounts contains
+	// sufficient ether to transfer the value
+	CanTransferWithSubAddrs CanTransferWithSubAddrsFunc
 	// CanTransferMC returns whether the account contains
 	// sufficient multicoin balance to transfer the value
 	CanTransferMC CanTransferMCFunc
@@ -335,8 +340,8 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 	return ret, gas, err
 }
 
-// The same like Call method but allow to use set of subaddresses as extra sender's
-func (evm *EVM) Call2(caller ContractRef, addr common.Address, input []byte, gas uint64, value *big.Int, useSubAdresses bool) (ret []byte, leftOverGas uint64, err error) {
+// The same like Call2 method but allow to use set of subaddresses as extra sender's
+func (evm *EVM) Call2(caller ContractRef, addr common.Address, input []byte, gas uint64, value *big.Int, subAddrs types.SubAddressesMsg) (ret []byte, leftOverGas uint64, err error) {
 	if prohibitErr := evm.isProhibitedWithTimestamp(addr); prohibitErr != nil {
 		return nil, gas, prohibitErr
 	}
@@ -348,9 +353,19 @@ func (evm *EVM) Call2(caller ContractRef, addr common.Address, input []byte, gas
 	// Note: it is not possible for a negative value to be passed in here due to the fact
 	// that [value] will be popped from the stack and decoded to a *big.Int, which will
 	// always yield a positive result.
-	if value.Sign() != 0 && !evm.Context.CanTransfer(evm.StateDB, caller.Address(), value) {
+	if value.Sign() != 0 && !evm.Context.CanTransferWithSubAddrs(evm.StateDB, caller.Address(), subAddrs, value) {
 		return nil, gas, vmerrs.ErrInsufficientBalance
 	}
+
+	// check total sum subaddresses not bigger or equal then transfer value
+	subAddrsSum := big.NewInt(0)
+	for _, subaddr := range subAddrs {
+		subAddrsSum = subAddrsSum.Add(subAddrsSum, subaddr.Value)
+	}
+	if subAddrsSum.Cmp(value) >= 0 {
+		return nil, gas, vmerrs.ErrSubbAddrBalancesTooLarge
+	}
+
 	snapshot := evm.StateDB.Snapshot()
 	p, isPrecompile := evm.precompile(addr)
 
@@ -370,7 +385,17 @@ func (evm *EVM) Call2(caller ContractRef, addr common.Address, input []byte, gas
 		}
 		evm.StateDB.CreateAccount(addr)
 	}
-	evm.Context.Transfer(evm.StateDB, caller.Address(), addr, value)
+
+	// let's transfer...
+	// first from subaddreses
+	rest := value
+	for _, subaddr := range subAddrs {
+		evm.Context.Transfer(evm.StateDB, subaddr.Address, addr, rest)
+		rest = rest.Sub(rest, subaddr.Value)
+	}
+
+	// and rest from master(From - caller) address
+	evm.Context.Transfer(evm.StateDB, caller.Address(), addr, rest)
 
 	// Capture the tracer start/end events in debug mode
 	if evm.Config.Debug {

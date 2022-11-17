@@ -299,6 +299,9 @@ func (tx *Transaction) Nonce() uint64 { return tx.inner.nonce() }
 // UseSubAddresses returns value that indicate use for spend sub addresses
 func (tx *Transaction) UseSubAddresses() bool { return tx.inner.useSubAddresses() }
 
+// UseSubAddresses returns value that indicate use for spend sub addresses
+func (tx *Transaction) SubAddresses() SubAddresses { return tx.inner.subAddresses() }
+
 // To returns the recipient address of the transaction.
 // For contract-creation transactions, To returns nil.
 func (tx *Transaction) To() *common.Address {
@@ -621,6 +624,7 @@ type Message struct {
 	accessList      AccessList
 	isFake          bool
 	useSubAddresses bool
+	subAddressesMsg SubAddressesMsg
 }
 
 func NewMessage(from common.Address, to *common.Address, nonce uint64, amount *big.Int, gasLimit uint64, gasPrice, gasFeeCap, gasTipCap *big.Int, data []byte, accessList AccessList, isFake bool, useSubAddresses bool) Message {
@@ -640,6 +644,19 @@ func NewMessage(from common.Address, to *common.Address, nonce uint64, amount *b
 	}
 }
 
+// converts set of subadresses signature represents to sub addresses message view with addresses.
+func (tx *Transaction) toSubAddressMsg(s Signer, subAddresses SubAddresses) (SubAddressesMsg, error) {
+	subAddrsMsg := make(SubAddressesMsg, 0)
+	subaddresses, err := SubSenders(s, tx)
+	if err != nil {
+		return subAddrsMsg, err
+	}
+	for i, subaddr := range subAddresses {
+		subAddrsMsg = append(subAddrsMsg, SubAddrMsgTuple {subaddresses[i], subaddr.Value})
+	}
+	return subAddrsMsg, nil
+}
+
 // AsMessage returns the transaction as a core.Message.
 func (tx *Transaction) AsMessage(s Signer, baseFee *big.Int) (Message, error) {
 	msg := Message{
@@ -654,6 +671,7 @@ func (tx *Transaction) AsMessage(s Signer, baseFee *big.Int) (Message, error) {
 		accessList:      tx.AccessList(),
 		isFake:          false,
 		useSubAddresses: tx.UseSubAddresses(),
+		subAddressesMsg: nil,	
 	}
 	// If baseFee provided, set gasPrice to effectiveGasPrice.
 	if baseFee != nil {
@@ -661,6 +679,10 @@ func (tx *Transaction) AsMessage(s Signer, baseFee *big.Int) (Message, error) {
 	}
 	var err error
 	msg.from, err = Sender(s, tx)
+	if err != nil {
+		return msg, err
+	}
+	msg.subAddressesMsg, err = tx.toSubAddressMsg(s, tx.SubAddresses())
 	return msg, err
 }
 
@@ -676,6 +698,7 @@ func (m Message) Data() []byte           { return m.data }
 func (m Message) AccessList() AccessList { return m.accessList }
 func (m Message) IsFake() bool           { return m.isFake }
 func (m Message) UseSubAddresses() bool  { return m.useSubAddresses }
+func (m Message) SubAddressesMsg() SubAddressesMsg     { return m.subAddressesMsg }
 
 // copyAddressPtr copies an address.
 func copyAddressPtr(a *common.Address) *common.Address {
