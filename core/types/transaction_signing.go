@@ -405,6 +405,7 @@ func (s eip2930Signer) Hash(tx *Transaction) common.Hash {
 				tx.Data(),
 				tx.AccessList(),
 				tx.UseSubAddresses(),
+				tx.SubAddresses(),
 			})
 	default:
 		// This _should_ not happen, but in case someone sends in a bad
